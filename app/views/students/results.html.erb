@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+	</style>
+</head>
+
+<body>
+	
+	
+	<table style="width:100%">
+	<tr>
+	  	<td>Id</td>
+	    <td>Maths</td>
+	    <td>Physics</td>
+	    <td>Chemistry</td>
+  	</tr>
+	<% @finalhash.each do |k|  %>
+	<tr>
+		
+		<td> <%= k[:id] %></td>
+	    <td> <%= k[:maths] %></td>
+	    <td> <%= k[:physics] %></td>
+	    <td> <%= k[:chemistry] %></td>
+	   
+	</tr>
+	<% end  %>
+	<% @final_hash %>
+	</table>
+
+	<% if( @compare == "student_id" ) %>
+	<body>
+		<table style="width:100%">
+		<tr>
+		  	<th>Id</th>
+		    <th>Maths</th>
+		    <th>Physics</th>
+		    <th>Chemistry</th>
+	  	</tr>
+		<% @final_hash.each do |k ,v|  %>
+		<tr><td><%= k %></td></tr>
+		<% if v.size > 1 %>
+			<tr>
+				<td> <%= @final_hash[k][0][0][:year] %></td>
+			    <td> <%= @final_hash[k][0][0][:maths] %></td>
+			    <td> <%= @final_hash[k][0][0][:physics] %></td>
+			    <td> <%= @final_hash[k][0][0][:chemistry] %></td>
+			   
+			</tr>
+			<tr>
+				<td> <%= @final_hash[k][1][0][:year] %></td>
+			    <td> <%= @final_hash[k][1][0][:maths] %></td>
+			    <td> <%= @final_hash[k][1][0][:physics] %></td>
+			    <td> <%= @final_hash[k][1][0][:chemistry] %></td>
+			</tr>
+			<tr>
+				<td> <%= @final_hash[k][2][0][:change] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_maths] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_physics] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_chemistry] %></td>
+			</tr>
+			<% end %>
+		<% end  %>
+		</table>
+		<% end %>
+	</body>
+
+	<% if( @compare == "dept" ) %>
+	<body>
+		<table style="width:100%">
+		<tr>
+		  	<th>Id</th>
+		    <th>Maths</th>
+		    <th>Physics</th>
+		    <th>Chemistry</th>
+	  	</tr>
+		<% @final_hash.each do |k ,v|  %>
+		<tr><td><%= k %></td></tr>
+		<% if v.size > 1 %>
+			<tr>
+				<td> <%= @final_hash[k][0][0][:year] %></td>
+			    <td> <%= @final_hash[k][0][0][:mathstotal] %></td>
+			    <td> <%= @final_hash[k][0][0][:physicstotal] %></td>
+			    <td> <%= @final_hash[k][0][0][:chemistrytotal] %></td>
+			   
+			</tr>
+			<tr>
+				<td> <%= @final_hash[k][1][0][:year] %></td>
+			    <td> <%= @final_hash[k][1][0][:mathstotal] %></td>
+			    <td> <%= @final_hash[k][1][0][:physicstotal] %></td>
+			    <td> <%= @final_hash[k][1][0][:chemistrytotal] %></td>
+			</tr>
+			<tr>
+				<td> <%= @final_hash[k][2][0][:change] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_maths] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_physics] %></td>
+			    <td> <%= @final_hash[k][2][0][:change_chemistry] %></td>
+			</tr>
+			<% end %>
+		<% end  %>
+		</table>
+		<% end %>
+	</body>
+	
+	
+	<body>
+	<% if(@total == "1") %>
+		<table style="width:100%">
+		<tr>
+		  	<th>Year</th>
+		    <th>Maths Total</th>
+		    <th>Physics Total</th>
+		    <th>Chemistry Total</th>
+	  	</tr>
+			<tr>
+				<td> <%= @totalhash[2016][0][:year] %></td>
+			    <td> <%= @totalhash[2016][0][:mathstot] %></td>
+			    <td> <%= @totalhash[2016][0][:physicstot] %></td>
+			    <td> <%= @totalhash[2016][0][:chemistrytot] %></td>
+			   
+			</tr>
+			<tr>
+				<td> <%= @totalhash[2015][0][:year] %></td>
+			    <td> <%= @totalhash[2015][0][:mathstot] %></td>
+			    <td> <%= @totalhash[2015][0][:physicstot] %></td>
+			    <td> <%= @totalhash[2015][0][:chemistrytot] %></td>
+			</tr>
+			
+		</table>
+	<% end %>
+	</body>
+<p><%= link_to "Back to Students", { action: "index" } %></p>
+
+</body>
+</html>

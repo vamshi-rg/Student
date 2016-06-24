@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	p.group{
+
+		padding: 20px;
+	}
+	p.sort{
+		padding: 20px;
+	}
+	p.compare{
+		padding: 20px;
+	}
+	p.total{
+		padding: 20px;
+	}
+</style>
+</head>
+<body>
+	<form url: { action: = "results"}, method: :results>
+		<p class = "group"><%= label_tag(:group, "Group By") %>	
+		<%= select_tag(:group, options_for_select([['Id', 'student_id'], ['Year', 'year'], ['Department','dept']])) %><br></p>
+		<p class = "sort"><%= label_tag(:sort, "Sort By") %>	
+		<%= select_tag(:sort, options_for_select([['Maths', 'maths'], ['Physics', 'physics'], ['Chemistry','chemistry']])) %><br></p>
+		<p class = "compare">
+		<%= label_tag(:compare, "Should Compare") %>
+		<%= select_tag(:compare, options_for_select([['Id', 'student_id'], ['Department', 'dept']])) %>
+		</p>
+		<p class = "total"><%= check_box_tag(:total) %>
+		<%= label_tag(:total, "Show Total") %></p>
+		<%= submit_tag "Submit" %>
+
+	</form>
+</body>
+</html>
+
+
+
+
+

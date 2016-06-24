@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	p.one{
+		padding: 10px;
+	}
+	p.two{
+		padding: 10px;
+	}
+	p.three{
+		padding: 10px;
+	}
+	
+</style>
+</head>
+<body>
+	<%= form_for @college do |f| %>
+	  <p class="one"><%= f.label(:name, "College Name") %>
+	  <%= f.text_field(:name) %><br></p>
+	  <p class="two"><%= f.label(:year, "Established Year") %>
+	  <%= f.text_field(:year) %><br></p>
+	  <p class="three"><%= submit_tag("Submit") %></p>
+<% end %>
+</body>
+</html>
+

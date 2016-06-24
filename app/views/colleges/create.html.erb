@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: left;
+}
+</style>
+</head>
+
+<body>
+
+<table style="width:100%">
+  <caption><h2>List of Colleges</h2></caption>
+  <tr>
+    <th>Name</th>
+    <th>Established Year</th>
+    
+    <th colspan="2">Operations</th>
+    
+  </tr>
+
+  <% @colleges.each do |s| %>   
+    <tr>
+      <td> <%= link_to s[:id] %></td>
+      <td> <%= s[:name] %></td>
+      <td> <%= s[:year] %></td>
+      
+      <td> <%= link_to image_tag("Edit_Icon_32.png"), edit_college_path(s), method: :get  %></td>
+      <td><%= button_to "Delete College", college_path(s),method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+
+</table>
+<p><%= link_to "Create new College", { action: "new" } %></p>
+
+</body>
+</html>

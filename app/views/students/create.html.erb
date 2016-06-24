@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+</head>
+
+
+
+<body>
+
+<table style="width:100%">
+  <tr>
+    <td>Id</td>
+    <td>Student_ID</td>
+    <td>Department</td>
+    <td>Maths</td>
+    <td>Physics</td>
+    <td>Chemistry</td>
+    <td>Year</td>
+    <td>College_ID</td>
+  </tr>
+
+  <% @student.each do |s| %>   
+    <tr>
+      <td> <%= s[:id] %></td>
+      <td> <%= s[:student_id] %></td>
+      <td> <%= s[:dept] %></td>
+      <td> <%= s[:maths] %></td>
+      <td> <%= s[:physics] %></td>
+      <td> <%= s[:chemistry] %></td>
+      <td> <%= s[:year] %></td>
+      <td> <%= s[:college_id]%></td>
+    </tr>
+  <% end %>
+
+</table>
+<p><%= link_to "Create new Student", {:action => 'new' }%></p>
+
+
+
+</body>
+</html>

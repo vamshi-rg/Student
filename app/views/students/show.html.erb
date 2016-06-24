@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function loadStudent() {	
+			$.ajax({
+			   url: 'http://localhost:3000/students/' + $(".student-id").val(),
+			   data: {},
+			   type: 'GET',
+			   error: function() {
+			   		debugger
+			      $('#info').html('<p>An error has occurred</p>');
+			   },
+			   success: function(data) {
+			   	var student = data;
+			   	  var table = $("<table></table>");
+			   	  var tr1 = $("<tr></tr>");
+			   	  var td11 = $("<td></td>");
+			   	  td11.text("ID");
+			   	  tr1.append(td11);
+			   	  var td12 = $("<td></td>");
+			   	  td12.text("Department");
+			   	  tr1.append(td12);
+			   	  var td13 = $("<td></td>");
+			   	  td13.text("Maths");
+			   	  tr1.append(td13);
+			   	  var td14 = $("<td></td>");
+			   	  td14.text("Physics");
+			   	  tr1.append(td14);
+			   	  var td15 = $("<td></td>");
+			   	  td15.text("Chemistry");
+			   	  tr1.append(td15);
+
+			   	  var tr2 = $("<tr></tr>");
+
+			   	  var td1 = $("<td></td>");
+			   	  td1.text(data["id"]);
+			   	  tr2.append(td1);
+			   	  var td2 = $("<td></td>");
+			   	  td2.text(data["dept"]);
+			   	  tr2.append(td2);
+			   	  var td3 = $("<td></td>");
+			   	  td3.text(data["maths"]);
+			   	  tr2.append(td3);
+			   	  var td4 = $("<td></td>");
+			   	  td4.text(data["physics"]);
+			   	  tr2.append(td4);
+			   	  var td5 = $("<td></td>");
+			   	  td5.text(data["chemistry"]);
+			   	  tr2.append(td5);
+
+			   	  table.append(tr1);
+			   	  table.append(tr2);
+			      $(".student-json").html(table);		   
+			   }
+			});
+
+		}
+	</script>
+</head>
+
+<body>
+	<table style="width:100%">
+	<tr>
+	  	<td>Id</td>
+	    <td>Student_ID</td>
+	    <td>Department</td>
+	    <td>Maths</td>
+	    <td>Physics</td>
+	    <td>Chemistry</td>
+	    <td>Year</td>
+	    <td>College_ID</td>
+	    <td>Extended Sid</td>
+  	</tr>
+	<tr>
+	  	<td> <%= @params["id"] %></td>
+	    <td> <%= @s[:student_id] %></td>
+	    <td> <%= @s[:dept] %></td>
+	    <td> <%= @s[:maths] %></td>
+	    <td> <%= @s[:physics] %></td>
+	    <td> <%= @s[:chemistry] %></td>
+	    <td> <%= @s[:year] %></td>
+	    <td> <%= @s[:college_id] %></td>
+	    <td> <%= @s[:extended_sid] %></td>
+	</tr>
+	</table>
+<p><%= link_to "Back to Students", { action: "index" } %></p>
+
+<p>
+	<input type="text" class="student-id"/>
+	<a href="#" onclick = "loadStudent()">load student as json</a>
+	<div class="student-json">
+	</div>
+</p>
+</body>
+</html>

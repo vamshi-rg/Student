@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	p.one{
+		padding: 10px;
+	}
+	p.two{
+		padding: 10px;
+	}
+	p.three{
+		padding: 10px;
+	}
+	p.four{
+		padding: 10px;
+	}
+	p.five{
+		padding: 10px;
+	}
+	p.six{
+		padding: 10px;
+	}
+	p.seven{
+		padding: 10px;
+	}
+	p.eight{
+		padding: 10px;
+	}
+</style>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function newStudent() {    
+            $.ajax({
+               url: 'http://localhost:3000/students/new/',
+               data: {},
+               type: 'GET',
+               error: function() {
+                    debugger
+                  $('#info').html('<p>An error has occurred</p>');
+               },
+               success: function(data) {
+                var student = data;
+                  var table = $("<table></table>");
+                  var tr1 = $("<tr></tr>");
+                  var td1 = $("<td></td>");
+                  td1.text(data["id"]);
+                  tr1.append(td1);
+                  var td2 = $("<td></td>");
+                  td2.text(data["dept"]);
+                  var td3 = $("<td></td>");
+                  td3.text(data["maths"]);
+                  tr1.append(td3);
+                  
+                  table.append(tr1);
+
+                  $(".student-json").html(table);          
+               }
+            });
+
+        }
+    </script>
+
+<body>
+	<%= form_tag("/students", method: "post") do %>
+	  <p class="one"><%= label_tag(:student_id, "Student Id") %>
+	  <%= text_field_tag(:student_id) %><br></p>
+	  <p class="two"><%= label_tag(:dept, "Department") %>
+	  <%= text_field_tag(:dept) %><br></p>
+	  <p class="three"><%= label_tag(:maths, "Maths") %>
+	  <%= text_field_tag(:maths) %><br></p>
+	  <p class="four"><%= label_tag(:physics, "Physics") %>
+	  <%= text_field_tag(:physics) %><br></p>
+	  <p class="five"><%= label_tag(:chemistry, "Chemistry") %>
+	  <%= text_field_tag(:chemistry) %><br></p>
+	  <p class="six"><%= label_tag(:year, "Year") %>
+	  <%= text_field_tag(:year) %><br></p>
+	  <p class="eight"><%= label_tag(:college_id, "College Id") %>
+	  <%= text_field_tag(:college_id) %><br></p>
+	  <p class="seven"><%= submit_tag("Submit") %></p>
+<% end %>
+
+<p>
+    <input type="text" class="student-id"/>
+    <a href="#" onclick = "newStudent()">load student as json</a>
+    <div class="student-json">
+    </div>
+</p>
+
+</body>
+</html>
+

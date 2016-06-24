@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+	</style>
+</head>
+
+<body>
+
+	
+	<% @s = College.find(params["id"]) %>
+	
+	<table style="width:100%">
+	<tr>
+	  	<td>Id</td>
+	    <td>Name</td>
+	    <td>Year</td>
+	    
+  	</tr>
+	<tr>
+	  	<td> <%= params[:id] %></td>
+	    <td> <%= @s[:name] %></td>
+	    <td> <%= @s[:year] %></td>
+	    
+	</tr>
+	</table>
+<p><%= link_to "Back to Colleges", { action: "index" } %></p>
+
+</body>
+</html>

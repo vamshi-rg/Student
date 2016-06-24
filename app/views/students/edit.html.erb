@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    table, tr, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+</head>
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function editStudent() {    
+            $.ajax({
+               url: 'http://localhost:3000/students/' + $(".student-id").val() + 'edit',
+               data: {},
+               type: 'GET',
+               error: function() {
+                    debugger
+                  $('#info').html('<p>An error has occurred</p>');
+               },
+               success: function(data) {
+                var student = data;
+                  var table = $("<table></table>");
+                  var tr1 = $("<tr></tr>");
+                  var td11 = $("<td></td>");
+                  td11.text("ID");
+                  tr1.append(td11);
+                  var td12 = $("<td></td>");
+                  td12.text("Department");
+                  tr1.append(td12);
+                  var td13 = $("<td></td>");
+                  td13.text("Maths");
+                  tr1.append(td13);
+                  var td14 = $("<td></td>");
+                  td14.text("Physics");
+                  tr1.append(td14);
+                  var td15 = $("<td></td>");
+                  td15.text("Chemistry");
+                  tr1.append(td15);
+
+                  var tr2 = $("<tr></tr>");
+
+                  var td1 = $("<td></td>");
+                  td1.text(data["id"]);
+                  tr2.append(td1);
+                  var td2 = $("<td></td>");
+                  td2.text(data["dept"]);
+                  tr2.append(td2);
+                  var td3 = $("<td></td>");
+                  td3.text(data["maths"]);
+                  tr2.append(td3);
+                  var td4 = $("<td></td>");
+                  td4.text(data["physics"]);
+                  tr2.append(td4);
+                  var td5 = $("<td></td>");
+                  td5.text(data["chemistry"]);
+                  tr2.append(td5);
+
+                  table.append(tr1);
+                  table.append(tr2);
+                  $(".student-json").html(table);        
+               }
+            });
+
+        }
+    </script>
+<% if @student.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+ 
+    <ul>
+    <% @student.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<body> 
+  <%= form_for @student do |f| %>
+    <%= f.label(:student_id, "Student Id") %>
+    <%= f.text_field(:student_id) %><br>
+    <%= f.label(:dept, "Department") %>
+    <%= f.text_field(:dept) %><br>
+    <%= f.label(:maths, "Maths") %>
+    <%= f.text_field(:maths) %><br>
+    <%= f.label(:physics, "Physics") %>
+    <%= f.text_field(:physics) %><br>
+    <%= f.label(:chemistry, "Chemistry") %>
+    <%= f.text_field(:chemistry) %><br>
+    <%= f.label(:year, "Year") %>
+    <%= f.text_field(:year) %><br>
+    <%= f.label(:college_id, "College Id") %>
+    <%= f.text_field(:college_id) %><br>
+    <%= submit_tag("Update") %>
+  <% end %>
+
+  <p>
+    <input type="text" class="student-id"/>
+    <a href="#" onclick = "editStudent()">load student as json</a>
+    <div class="student-json">
+    </div>
+</p>
+</body>
+</html>

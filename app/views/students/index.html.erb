@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: left;
+    background-color:#00b38f
+}
+
+tr:nth-child(even){background-color: #99ffeb}
+tr:hover{background-color:#d6d6c2}
+</style>
+</head>
+
+<body>
+
+<table style="width:100%">
+	<caption><h2>List of Students</h2></caption>
+  <tr>
+  	<th>Id</th>
+    <th>Student_ID</th>
+    <th>Department</th>
+    <th>Maths</th>
+    <th>Physics</th>
+    <th>Chemistry</th>
+    <th>Year</th>
+    <th>College_ID</th>
+    <th>Extended Sid</th>
+    <th colspan="2">Operations</th>
+    
+  </tr>
+
+  <% @students.each do |s| %>   
+    <tr>
+	    <td> <%= link_to s[:id], student_path(s), method: :get %></td>
+	    <td> <%= s[:student_id] %></td>
+	    <td> <%= s[:dept] %></td>
+	    <td> <%= s[:maths] %></td>
+	    <td> <%= s[:physics] %></td>
+	    <td> <%= s[:chemistry] %></td>
+	    <td> <%= s[:year] %></td>
+      <td> <%= s[:college_id] %></td>
+      <td> <%= s[:extended_sid] %></td>
+		<td><%= link_to image_tag("Edit_Icon_16.png"), edit_student_path(s), method: :get %></td>
+		<td><%= button_to "Delete Student", student_path(s),method: :delete, data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+
+</table>
+<p><%= link_to "Create new Student", { action: "new" } %></p>
+<p><%= link_to "Do Queries", { action: "do_queries" } %></p>
+
+</body>
+</html>
